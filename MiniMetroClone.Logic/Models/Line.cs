@@ -8,5 +8,19 @@ namespace MiniMetroClone.Logic.Models
 {
     public class Line
     {
+        public LineColor Color { get; }
+
+        private readonly List<Station> _stations;
+        public IEnumerable<Station> Stations => _stations;
+
+        private readonly List<Train> _trains;
+        public IEnumerable<Train> Trains => _trains;
+
+        public Line(LineColor color)
+        {
+            Color = color;
+            _stations = new List<Station>();
+            _trains = new List<Train>();
+        }
     }
 }

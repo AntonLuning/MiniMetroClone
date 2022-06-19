@@ -26,18 +26,23 @@ namespace MiniMetroClone.Logic.Models
             _passengers.Add(passenger);
         }
 
-        public Passenger? CollectPassenger(StationType stationType)
+        public void RemovePassenger(Passenger? passenger)
         {
-            Passenger? passengerToRemove = Passengers.Where(p => p.Type == stationType).FirstOrDefault();
-
-            if (passengerToRemove == null)
+            if (passenger == null)
             {
-                return null;
+                return;
             }
 
-            _passengers.Remove(passengerToRemove);
+            _passengers.Remove(passenger);
+        }
 
-            return passengerToRemove;
+        public Passenger? CollectPassenger(StationType stationType)
+        {
+            Passenger? passenger = Passengers.Where(p => p.Type == stationType).FirstOrDefault();
+
+            RemovePassenger(passenger);
+
+            return passenger;
         }
 
         public bool ContainsPassenger(StationType type)
